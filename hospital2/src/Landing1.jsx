@@ -6,7 +6,7 @@ const Landing1 = () => {
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
-      <header className="bg-blue-600 text-white p-4">
+      <header className="bg-blue-700 text-white p-4">
         <div className="container mx-auto flex justify-between items-center">
           <h1 className="text-2xl font-bold">Hospital Management</h1>
           <nav>
@@ -26,7 +26,7 @@ const Landing1 = () => {
           Providing the best healthcare for you and your family.
         </p>
         <button className="bg-white text-blue-500 hover:bg-blue-700 hover:text-white px-6 py-2 rounded font-semibold">
-          Book an Appointment
+          Book an APPOINTMENT
         </button>
       </section>
 
