@@ -26,7 +26,7 @@ const Landing1 = () => {
           Providing the best healthcare for you and your family.
         </p>
         <button className="bg-white text-blue-500 hover:bg-blue-700 hover:text-white px-6 py-2 rounded font-semibold">
-          Book an APPOINTMENT and meet us
+          Book an APPOINTMENT NOW
         </button>
       </section>
 
