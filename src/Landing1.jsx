@@ -53,7 +53,7 @@ const Landing1 = () => {
           <h2 className="text-3xl font-bold mb-6">About Us</h2>
           <p className="text-gray-700">
             We are committed to providing the highest level of healthcare to all patients.
-            Our team of professionals works around the clock to ensure the best care.
+            Our team of professionals works around the clock to ensure the best care to our patients.
           </p>
         </div>
       </section>
