@@ -9,8 +9,10 @@ function App() {
   <div>
     
     {/* <Landing/>
-    <Landing1/> */}
+    <Landing1/> */
+    }
 <Landing1/>
+<Appointmentstats/>
  
   </div>
   );
