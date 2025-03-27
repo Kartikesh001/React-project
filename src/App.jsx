@@ -13,6 +13,7 @@ function App() {
     }
 <Landing1/>
 <Appointmentstats/>
+<patienthomepage/>
  
   </div>
   );
