@@ -1,8 +1,8 @@
 import React from "react";
 
 const doctors = [
-  { id: 1, name: "Dr. John Doe", specialty: "Cardiologist", experience: "10 years", image: "/Doctor1.png", availability: [4, 7, 11, 14, 18, 22] },
-  { id: 2, name: "Dr. Jane Smith", specialty: "Endocrinologist", experience: "8 years", image: "/doctor2.jpg", availability: [2, 5, 9, 12, 16, 20] },
+  { id: 1, name: "Dr. Ashmita Singh", specialty: "Cardiologist", experience: "10 years", image: "/Doctor1.png", availability: [4, 7, 11, 14, 18, 22] },
+  { id: 2, name: "Dr. Rohit Sharma", specialty: "Endocrinologist", experience: "8 years", image: "/doctor2.jpg", availability: [2, 5, 9, 12, 16, 20] },
   { id: 3, name: "Dr. Alice Brown", specialty: "Pulmonologist", experience: "12 years", image: "/doctor3.jpg", availability: [3, 6, 10, 15, 19, 25] },
 ];
 
@@ -71,6 +71,8 @@ const PatientHomePage = () => {
                     <div className="grid grid-cols-7 gap-1 text-xs text-gray-700">
                       {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => (
                         <div
+
+
                           key={day}
                           className={`w-6 h-6 flex items-center justify-center rounded ${
                             doctor.availability.includes(day) ? "bg-green-500 text-white font-bold" : "bg-gray-100"
