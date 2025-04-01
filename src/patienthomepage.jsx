@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const doctors = [
   { id: 1, name: "Dr. Ashmita Singh", specialty: "Cardiologist", experience: "10 years", image: "/Doctor1.png", availability: [4, 7, 11, 14, 18, 22] },

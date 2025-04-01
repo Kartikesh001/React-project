@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 @import "tailwindcss";
 
 @plugin "tailwindcss-animate";
@@ -120,6 +119,3 @@
     @apply bg-background text-foreground;
   }
 }
-=======
-@import "tailwindcss";
->>>>>>> ec32aa9169a2a64278a71fcb258e2ead4ff5a46c
