@@ -1,77 +1,112 @@
-import React, { useState } from "react";
-import { FaUser, FaLock } from "react-icons/fa";
+import { useState } from "react";
+import { BrowserRouter as Router, useNavigate } from "react-router-dom";
+import axios from "axios";
+import { Toaster, toast } from "sonner";
 
-const LoginPage = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+export default function AuthPage() {
+  return (
+    <Router>
+      <AuthForm />
+    </Router>
+  );
+}
 
-  const handleLogin = (e) => {
+function AuthForm() {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({ email: "", username: "", password: "" });
+  const [isPending, setIsPending] = useState(false);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Logging in with", email, password);
+    setIsPending(true);
+    try {
+      await axios.post("/api/register", formData);
+      toast.success("Registration successful! Redirecting...");
+      setTimeout(() => navigate("/"), 500);
+    } catch (error) {
+      const errorMessage = error.response?.data?.error || "Registration failed. Try again.";
+      toast.error(errorMessage);
+    } finally {
+      setIsPending(false);
+    }
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100">
-      <div className="bg-white p-8 rounded-2xl shadow-xl w-96">
-        <h2 className="text-2xl font-semibold text-center text-green-600 mb-6">
-          HealthCare Login
-        </h2>
-        <form onSubmit={handleLogin}>
-          <div className="mb-4">
-            <label className="block mb-2 text-gray-600">Email</label>
-            <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-              <FaUser className="text-gray-400 mr-2" />
-              <input
-                type="email"
-                placeholder="Enter your email"
-                className="outline-none bg-transparent w-full"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-              />
-            </div>
+    <div className="flex min-h-screen items-center justify-center bg-gray-700">
+      <Toaster />
+      <div className="w-[80vw] h-[90vh] flex shadow-lg rounded-2xl overflow-hidden bg-white">
+        {/* Left Side - Image */}
+        <div
+          className="w-1/2 bg-cover bg-center flex flex-col justify-center items-center p-6"
+          style={{ backgroundImage: "url('/Doctor.png')" }}
+        ></div>
+
+        {/* Right Side - Form */}
+        <div className="w-1/2 flex flex-col items-center justify-center p-10 bg-gray-500">
+          <h1 className="text-3xl font-bold text-center text-black drop-shadow-lg">Welcome to MedicoHub</h1>
+          <p className="text-center text-black text-lg mt-2 drop-shadow-md">Your trust is our pride</p>
+          
+          <div className="w-full max-w-md p-6 shadow-2xl bg-white mt-8 rounded-lg">
+            <h2 className="text-center text-2xl font-semibold text-gray-800">Register</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-4 mt-4">
+              <div>
+                <label htmlFor="username" className="block font-semibold">Username</label>
+                <input
+                  id="username"
+                  type="text"
+                  name="username"
+                  placeholder="Enter your username"
+                  value={formData.username}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border rounded"
+                />
+              </div>
+              <div>
+                <label htmlFor="email" className="block font-semibold">Email</label>
+                <input
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border rounded"
+                />
+              </div>
+              <div>
+                <label htmlFor="password" className="block font-semibold">Password</label>
+                <input
+                  id="password"
+                  type="password"
+                  name="password"
+                  placeholder="Enter your password"
+                  value={formData.password}
+                  onChange={handleChange}
+                  required
+                  className="w-full mt-2 p-2 border rounded"
+                />
+              </div>
+              <button type="submit" disabled={isPending} className="mt-4 w-full bg-blue-600 hover:bg-blue-700 text-white p-2 rounded">
+                {isPending ? "Registering..." : "Register"}
+              </button>
+            </form>
           </div>
-          <div className="mb-4">
-            <label className="block mb-2 text-gray-600">Password</label>
-            <div className="flex items-center border rounded-lg p-2 bg-gray-50">
-              <FaLock className="text-gray-400 mr-2" />
-              <input
-                type="password"
-                placeholder="Enter your password"
-                className="outline-none bg-transparent w-full"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-            </div>
+          
+          {/* Link to Login */}
+          <div className="mt-4 text-center">
+            <p className="text-sm font-bold text-black">
+              Already have an account? {" "}
+              <a href="/sign-in" className="text-blue-600 hover:underline">Login</a>
+            </p>
           </div>
-          <div className="flex justify-between items-center mb-4">
-            <label className="flex items-center text-gray-600">
-              <input type="checkbox" className="mr-2" /> Remember me
-            </label>
-            <a href="#" className="text-green-600 text-sm hover:underline">
-              Forgot password?
-            </a>
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-green-500 text-white p-3 rounded-lg hover:bg-green-600 transition"
-          >
-            Login
-          </button>
-        </form>
-        <p className="text-center text-gray-600 mt-4">
-          New to HealthCare? {" "}
-          <a href="#" className="text-green-600 hover:underline">
-            Sign up
-          </a>
-        </p>
-        <div className="mt-6 text-center">
-          <p className="text-gray-500 text-sm">Stay healthy, stay happy!</p>
         </div>
       </div>
     </div>
   );
-};
-
-export default LoginPage;
+}
